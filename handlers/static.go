@@ -29,6 +29,13 @@ func serveStaticResource() http.HandlerFunc {
 		w.Header().Set("Etag", etag)
 		w.Header().Set("Cache-Control", "max-age=3600")
 
+		// If the app is mounted under a base path, strip it so the embedded
+		// file server can resolve paths relative to the static root.
+		base := basePathFromContext(r.Context())
+		if base != "/" {
+			http.StripPrefix(base, server).ServeHTTP(w, r)
+			return
+		}
 		server.ServeHTTP(w, r)
 	}
 }

@@ -17,7 +17,7 @@
 
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { toggleShowElement, hideElement } from "/js/lib/bulma.js";
+    import { toggleShowElement, hideElement } from "{{ .BasePath }}/js/lib/bulma.js";
 
     const sizeDeltaNotification = document.querySelector(".notification");
 

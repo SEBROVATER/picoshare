@@ -13,7 +13,7 @@
 </template>
 
 <script type="module" nonce="{{ .CspNonce }}">
-  import { makeShortLink, makeVerboseLink } from "/js/lib/links.js";
+  import { makeShortLink, makeVerboseLink } from "{{ .BasePath }}/js/lib/links.js";
 
   (function () {
     const template = document.querySelector("#upload-links-template");

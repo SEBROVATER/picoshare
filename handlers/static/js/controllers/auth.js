@@ -1,5 +1,7 @@
+import { apiPath } from "../lib/paths.js";
+
 export async function authenticate(passphrase) {
-  return fetch("/api/auth", {
+  return fetch(apiPath("/api/auth"), {
     method: "POST",
     mode: "same-origin",
     credentials: "include",
@@ -19,7 +21,7 @@ export async function authenticate(passphrase) {
 }
 
 export function logOut() {
-  return fetch("/api/auth", {
+  return fetch(apiPath("/api/auth"), {
     method: "DELETE",
     mode: "same-origin",
     credentials: "include",

@@ -1,4 +1,5 @@
 import { logOut } from "./controllers/auth.js";
+import { basePath } from "./lib/paths.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const navbarBurgers = Array.prototype.slice.call(
@@ -21,7 +22,7 @@ const logOutEl = document.getElementById("navbar-log-out");
 if (logOutEl) {
   logOutEl.addEventListener("click", () => {
     logOut().then(() => {
-      document.location = "/";
+      document.location = basePath() + "/";
     });
   });
 }

@@ -1,7 +1,7 @@
 <template id="expiration-picker-template">
   <style nonce="{{ .CspNonce }}">
-    @import "/third-party/bulma@0.9.3/bulma.min.css";
-    @import "/third-party/js-datepicker@5.18.0/datepicker.min.css";
+    @import "{{ .BasePath }}/third-party/bulma@0.9.3/bulma.min.css";
+    @import "{{ .BasePath }}/third-party/js-datepicker@5.18.0/datepicker.min.css";
   </style>
   <div class="control">
     <input id="expiration" class="input is-normal" type="text" />
@@ -13,7 +13,7 @@
   // Note: I don't know of a cleaner way of doing this. datepicker doesn't seem
   // to export values like a proper JS module, so we import the whole JS file,
   // which populates window.datepicker.
-  import "/third-party/js-datepicker@5.18.0/js-datepicker.js";
+  import "{{ .BasePath }}/third-party/js-datepicker@5.18.0/js-datepicker.js";
 
   (function () {
     const template = document.querySelector("#expiration-picker-template");

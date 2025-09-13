@@ -50,14 +50,16 @@
       guestLinkDelete,
       guestLinkEnable,
       guestLinkDisable,
-    } from "/js/controllers/guestLinks.js";
-    import { showElement, hideElement } from "/js/lib/bulma.js";
-    import { copyToClipboard } from "/js/lib/clipboard.js";
+    } from "{{ .BasePath }}/js/controllers/guestLinks.js";
+    import { showElement, hideElement } from "{{ .BasePath }}/js/lib/bulma.js";
+    import { copyToClipboard } from "{{ .BasePath }}/js/lib/clipboard.js";
 
     const errorContainer = document.getElementById("error");
 
     function makeGuestLink(linkId) {
-      return `${window.location.origin}/g/${linkId}`;
+      const b = (window.__BASE_PATH__ || "/").trim();
+      const base = b === "/" ? "" : b;
+      return `${window.location.origin}${base}/g/${linkId}`;
     }
 
     document.querySelectorAll('[aria-label="Delete"]').forEach((deleteBtn) => {
@@ -177,7 +179,10 @@
     </div>
   </article>
 
-  <a class="button is-primary" role="button" href="/guest-links/new"
+  <a
+    class="button is-primary"
+    role="button"
+    href="{{ .BasePath }}/guest-links/new"
     >Create new</a
   >
 
@@ -199,7 +204,7 @@
           <tr {{ if not .IsActive }}class="inactive"{{ end }}>
             <td class="is-vcentered">
               {{ if .IsActive }}
-                <a href="/g/{{ .ID }}">
+                <a href="{{ $.BasePath }}/g/{{ .ID }}">
                   {{ template "label-formatted" . }}
                 </a>
               {{ else }}

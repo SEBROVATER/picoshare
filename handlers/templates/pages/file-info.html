@@ -13,7 +13,7 @@
 
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { parseRfc3339 } from "/js/lib/time.js";
+    import { parseRfc3339 } from "{{ .BasePath }}/js/lib/time.js";
 
     document.getElementById("close-btn").addEventListener("click", () => {
       history.back();
@@ -81,7 +81,10 @@
     <section>
       <h2>Downloads</h2>
       <p class="value">
-        {{ $downloadCount }} (<a href="/files/{{ .ID }}/downloads">History</a>)
+        {{ $downloadCount }} (<a
+          href="{{ .BasePath }}/files/{{ .ID }}/downloads"
+          >History</a
+        >)
       </p>
     </section>
 
@@ -108,7 +111,9 @@
           {{ end }}
 
           Guest link:
-          <a href="/g/{{ .GuestLink.ID.String }}">{{ $label.String }}</a>
+          <a href="{{ $.BasePath }}/g/{{ .GuestLink.ID.String }}"
+            >{{ $label.String }}</a
+          >
         {{ end }}
       </p>
     </section>
@@ -125,7 +130,11 @@
         <button class="button is-link is-light" id="close-btn">Close</button>
       </div>
       <div class="control">
-        <a class="button is-link" role="button" href="/files/{{ .ID }}/edit">
+        <a
+          class="button is-link"
+          role="button"
+          href="{{ .BasePath }}/files/{{ .ID }}/edit"
+        >
           <i class="fas fa-edit mr-2"></i>
           Edit</a
         >

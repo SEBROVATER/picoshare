@@ -8,8 +8,8 @@
 
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { deleteFile } from "/js/controllers/files.js";
-    import { showElement, hideElement } from "/js/lib/bulma.js";
+    import { deleteFile } from "{{ .BasePath }}/js/controllers/files.js";
+    import { showElement, hideElement } from "{{ .BasePath }}/js/lib/bulma.js";
 
     const deleteForm = document.getElementById("delete-form");
     const errorContainer = document.getElementById("error");
@@ -28,7 +28,7 @@
 
       deleteFile(id)
         .then(() => {
-          document.location = "/files";
+          document.location = "{{ .BasePath }}/files";
         })
         .catch((error) => {
           document.getElementById("error-message").innerText = error;
@@ -53,7 +53,10 @@
 
       <div class="field is-grouped is-flex is-justify-content-flex-end my-5">
         <div class="control">
-          <a class="button is-link is-light" href="/files/{{ .ID }}/edit">
+          <a
+            class="button is-link is-light"
+            href="{{ .BasePath }}/files/{{ .ID }}/edit"
+          >
             Cancel
           </a>
         </div>

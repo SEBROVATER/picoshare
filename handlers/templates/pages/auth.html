@@ -1,6 +1,6 @@
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { authenticate, logOut } from "/js/controllers/auth.js";
+    import { authenticate, logOut } from "{{ .BasePath }}/js/controllers/auth.js";
 
     function setAuthFormState(isEnabled) {
       document.querySelectorAll("#auth-form input").forEach((el) => {
@@ -25,7 +25,7 @@
       disableAuthForm();
       authenticate(secret)
         .then(() => {
-          document.location = "/";
+          document.location = "{{ .BasePath }}/";
         })
         .catch((error) => {
           logOut();

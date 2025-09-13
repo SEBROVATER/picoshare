@@ -50,8 +50,9 @@ export async function uploadFile(file, expirationTime, note, progressFn) {
   if (note) {
     formData.append("note", note);
   }
+  const { apiPath } = await import("../lib/paths.js");
   return uploadFormData(
-    `/api/entry?expiration=${encodeURIComponent(expirationTime)}`,
+    apiPath(`/api/entry?expiration=${encodeURIComponent(expirationTime)}`),
     formData,
     progressFn
   );
@@ -65,10 +66,13 @@ export async function guestUploadFile(
 ) {
   const formData = new FormData();
   formData.append("file", file);
+  const { apiPath } = await import("../lib/paths.js");
   return uploadFormData(
-    `/api/guest/${guestLinkID}?expiration=${encodeURIComponent(
-      expirationTime
-    )}`,
+    apiPath(
+      `/api/guest/${guestLinkID}?expiration=${encodeURIComponent(
+        expirationTime
+      )}`
+    ),
     formData,
     progressFn
   );
@@ -82,7 +86,8 @@ export async function editFile(id, filename, expiration, note) {
   if (expiration) {
     payload.expiration = expiration;
   }
-  return fetch(`/api/entry/${encodeURIComponent(id)}`, {
+  const { apiPath } = await import("../lib/paths.js");
+  return fetch(apiPath(`/api/entry/${encodeURIComponent(id)}`), {
     method: "PUT",
     credentials: "include",
     body: JSON.stringify(payload),
@@ -107,7 +112,8 @@ export async function editFile(id, filename, expiration, note) {
 }
 
 export async function deleteFile(id) {
-  return fetch(`/api/entry/${id}`, {
+  const { apiPath } = await import("../lib/paths.js");
+  return fetch(apiPath(`/api/entry/${id}`), {
     method: "DELETE",
     credentials: "include",
   })

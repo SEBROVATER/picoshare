@@ -2,7 +2,7 @@
   <nav class="navbar" role="navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">PicoShare</a>
+        <a class="navbar-item" href="{{ .BasePath }}/">PicoShare</a>
         <a
           role="button"
           class="navbar-burger"
@@ -19,12 +19,20 @@
         {{ if .IsAuthenticated }}
           <div class="navbar-start">
             <div class="navbar-item">
-              <a class="button is-primary is-success" role="menuitem" href="/"
+              <a
+                class="button is-primary is-success"
+                role="menuitem"
+                href="{{ .BasePath }}/"
                 >Upload</a
               >
             </div>
-            <a class="navbar-item" role="menuitem" href="/files">Files</a>
-            <a class="navbar-item" role="menuitem" href="/guest-links"
+            <a class="navbar-item" role="menuitem" href="{{ .BasePath }}/files"
+              >Files</a
+            >
+            <a
+              class="navbar-item"
+              role="menuitem"
+              href="{{ .BasePath }}/guest-links"
               >Guest Links</a
             >
           </div>
@@ -34,10 +42,16 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link" role="menuitem">System</a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" role="menuitem" href="/information"
+                <a
+                  class="navbar-item"
+                  role="menuitem"
+                  href="{{ .BasePath }}/information"
                   >Information</a
                 >
-                <a class="navbar-item" role="menuitem" href="/settings"
+                <a
+                  class="navbar-item"
+                  role="menuitem"
+                  href="{{ .BasePath }}/settings"
                   >Settings</a
                 >
                 <a id="navbar-log-out" class="navbar-item" role="menuitem"
@@ -47,7 +61,11 @@
             </div>
           {{ else }}
             <div class="navbar-item">
-              <a class="button is-primary" role="menuitem" href="/login">
+              <a
+                class="button is-primary"
+                role="menuitem"
+                href="{{ .BasePath }}/login"
+              >
                 Log In
               </a>
             </div>

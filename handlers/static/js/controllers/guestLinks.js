@@ -1,5 +1,7 @@
 "use strict";
 
+import { apiPath } from "../lib/paths.js";
+
 export async function guestLinkNew(
   label,
   urlExpirationTime,
@@ -7,7 +9,7 @@ export async function guestLinkNew(
   maxFileBytes,
   maxFileUploads
 ) {
-  return fetch("/api/guest-links", {
+  return fetch(apiPath("/api/guest-links"), {
     method: "POST",
     credentials: "include",
     body: JSON.stringify({
@@ -38,7 +40,7 @@ export async function guestLinkNew(
 }
 
 export async function guestLinkDelete(id) {
-  return fetch(`/api/guest-links/${id}`, {
+  return fetch(apiPath(`/api/guest-links/${id}`), {
     method: "DELETE",
     credentials: "include",
   })
@@ -62,7 +64,7 @@ export async function guestLinkDelete(id) {
 }
 
 export async function guestLinkEnable(id) {
-  return fetch(`/api/guest-links/${id}/enable`, {
+  return fetch(apiPath(`/api/guest-links/${id}/enable`), {
     method: "PUT",
     credentials: "include",
   })
@@ -86,7 +88,7 @@ export async function guestLinkEnable(id) {
 }
 
 export async function guestLinkDisable(id) {
-  return fetch(`/api/guest-links/${id}/disable`, {
+  return fetch(apiPath(`/api/guest-links/${id}/disable`), {
     method: "PUT",
     credentials: "include",
   })

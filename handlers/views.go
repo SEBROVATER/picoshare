@@ -26,6 +26,7 @@ type commonProps struct {
 	Title           string
 	IsAuthenticated bool
 	CspNonce        string
+	BasePath        string
 }
 
 func (s Server) indexGet() http.HandlerFunc {
@@ -752,10 +753,15 @@ func humanReadableDiskUsage(b uint64) string {
 }
 
 func makeCommonProps(title string, ctx context.Context) commonProps {
+	bp := basePathFromContext(ctx)
+	if bp == "/" {
+		bp = ""
+	}
 	return commonProps{
 		Title:           title,
 		IsAuthenticated: isAuthenticated(ctx),
 		CspNonce:        cspNonce(ctx),
+		BasePath:        bp,
 	}
 }
 

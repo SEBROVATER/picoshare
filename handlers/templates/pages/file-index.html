@@ -33,9 +33,9 @@
 
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { showElement, hideElement } from "/js/lib/bulma.js";
-    import { copyToClipboard } from "/js/lib/clipboard.js";
-    import { makeShortLink } from "/js/lib/links.js";
+    import { showElement, hideElement } from "{{ .BasePath }}/js/lib/bulma.js";
+    import { copyToClipboard } from "{{ .BasePath }}/js/lib/clipboard.js";
+    import { makeShortLink } from "{{ .BasePath }}/js/lib/links.js";
 
     const errorContainer = document.getElementById("error");
 
@@ -82,7 +82,7 @@
         {{ range .Files }}
           <tr test-data-filename="{{ .Filename }}">
             <td class="is-vcentered">
-              <a href="/-{{ .ID }}">{{ .Filename }}</a>
+              <a href="{{ $.BasePath }}/-{{ .ID }}">{{ .Filename }}</a>
             </td>
             <td class="is-vcentered">
               {{ if .Note.Value }}
@@ -102,7 +102,7 @@
                 <p class="control">
                   <a
                     class="button is-link"
-                    href="/files/{{ .ID }}/info"
+                    href="{{ $.BasePath }}/files/{{ .ID }}/info"
                     role="button"
                     aria-label="Information"
                   >
@@ -112,7 +112,7 @@
                 <p class="control">
                   <a
                     class="button is-link"
-                    href="/files/{{ .ID }}/edit"
+                    href="{{ $.BasePath }}/files/{{ .ID }}/edit"
                     role="button"
                     aria-label="Edit"
                   >

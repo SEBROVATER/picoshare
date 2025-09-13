@@ -24,13 +24,13 @@ if [[ -f .env.dev ]]; then
   set -x
 fi
 
-PS_SHARED_SECRET=somepassword
 
 docker rm -f picoshare || true
 
 docker run \
   --env "PORT=4002" \
   --env "PS_SHARED_SECRET=${PS_SHARED_SECRET}" \
+  --env "PS_BASE_PATH=${PS_BASE_PATH:-}" \
   --env "LITESTREAM_BUCKET=${LITESTREAM_BUCKET:-}" \
   --env "LITESTREAM_ENDPOINT=${LITESTREAM_ENDPOINT:-}" \
   --env "LITESTREAM_ACCESS_KEY_ID=${LITESTREAM_ACCESS_KEY_ID:-}" \

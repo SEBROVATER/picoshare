@@ -1,5 +1,8 @@
+import { basePath } from "./paths.js";
+
 export function makeShortLink(fileId) {
-  return `${window.location.origin}/-${fileId}`;
+  const b = basePath();
+  return `${window.location.origin}${b === "/" ? "" : b}/-${fileId}`;
 }
 
 export function makeVerboseLink(fileId, filename) {

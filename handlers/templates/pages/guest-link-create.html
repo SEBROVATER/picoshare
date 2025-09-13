@@ -1,8 +1,8 @@
 {{ define "script-tags" }}
   <script type="module" nonce="{{ .CspNonce }}">
-    import { guestLinkNew } from "/js/controllers/guestLinks.js";
-    import { showElement, hideElement } from "/js/lib/bulma.js";
-    import { enableElement, disableElement } from "/js/lib/html.js";
+    import { guestLinkNew } from "{{ .BasePath }}/js/controllers/guestLinks.js";
+    import { showElement, hideElement } from "{{ .BasePath }}/js/lib/bulma.js";
+    import { enableElement, disableElement } from "{{ .BasePath }}/js/lib/html.js";
 
     const labelInput = document.getElementById("label");
     const expirationSelect = document.getElementById("expiration-select");
@@ -52,7 +52,7 @@
         guestLink.maxFileUploads
       )
         .then(() => {
-          document.location = "/guest-links";
+          document.location = "{{ .BasePath }}/guest-links";
         })
         .catch((error) => {
           document.getElementById("error-message").innerText = error;

@@ -1,7 +1,9 @@
 "use strict";
 
+import { apiPath } from "../lib/paths.js";
+
 export async function settingsPut(settings) {
-  return fetch("/api/settings", {
+  return fetch(apiPath("/api/settings"), {
     method: "PUT",
     credentials: "include",
     body: JSON.stringify(settings),
