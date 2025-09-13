@@ -82,7 +82,7 @@
       <h2>Downloads</h2>
       <p class="value">
         {{ $downloadCount }} (<a
-          href="{{ .BasePath }}/files/{{ .ID }}/downloads"
+          href="{{ $.BasePath }}/files/{{ .ID }}/downloads"
           >History</a
         >)
       </p>
@@ -133,7 +133,7 @@
         <a
           class="button is-link"
           role="button"
-          href="{{ .BasePath }}/files/{{ .ID }}/edit"
+          href="{{ $.BasePath }}/files/{{ .ID }}/edit"
         >
           <i class="fas fa-edit mr-2"></i>
           Edit</a
